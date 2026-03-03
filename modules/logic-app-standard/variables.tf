@@ -100,7 +100,6 @@ variable "site_config" {
     linux_fx_version                 = optional(string)
     min_tls_version                  = optional(string)
     pre_warmed_instance_count        = optional(number)
-    public_network_access_enabled    = optional(bool)
     runtime_scale_monitoring_enabled = optional(bool)
     use_32_bit_worker_process        = optional(bool)
     vnet_route_all_enabled           = optional(bool)
@@ -138,6 +137,22 @@ variable "identity" {
     identity_ids = optional(list(string))
   })
   default = null
+}
+
+variable "public_network_access" {
+  description = "Whether public network access is allowed for the Logic App. Valid values: 'Enabled', 'Disabled'"
+  type        = string
+  default     = "Disabled"
+  validation {
+    condition     = contains(["Enabled", "Disabled"], var.public_network_access)
+    error_message = "Must be 'Enabled' or 'Disabled'."
+  }
+}
+
+variable "vnet_content_share_enabled" {
+  description = "Should content over the virtual network integration subnet be enabled. Required when using VNet integration"
+  type        = bool
+  default     = false
 }
 
 variable "tags" {
