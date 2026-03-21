@@ -1,5 +1,5 @@
 variable "name" {
-  description = "The name of the Linux Function App"
+  description = "The name of the Windows Function App"
   type        = string
 }
 
@@ -14,7 +14,7 @@ variable "location" {
 }
 
 variable "service_plan_id" {
-  description = "The ID of the consumption (Y1) App Service Plan"
+  description = "The ID of the App Service Plan"
   type        = string
 }
 
@@ -64,13 +64,12 @@ variable "site_config" {
 }
 
 variable "application_stack" {
-  description = "The application stack for the Function App runtime"
+  description = "The application stack for the Windows Function App runtime"
   type = object({
     dotnet_version              = optional(string)
     use_dotnet_isolated_runtime = optional(bool)
     java_version                = optional(string)
     node_version                = optional(string)
-    python_version              = optional(string)
     powershell_core_version     = optional(string)
     use_custom_runtime          = optional(bool)
   })
