@@ -17,6 +17,10 @@ variable "idle_timeout_in_minutes" {
   description = "The idle timeout in minutes for the NAT gateway"
   type        = number
   default     = 4
+  validation {
+    condition     = var.idle_timeout_in_minutes >= 4 && var.idle_timeout_in_minutes <= 120
+    error_message = "idle_timeout_in_minutes must be between 4 and 120."
+  }
 }
 
 variable "public_ip_name" {
